@@ -18,6 +18,7 @@ docker build \
 ## CI
 
 Requirements:
+- `GHCR_PAT` repository secret with [GitHub Personal Access Token (PAT)](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with `delete:packages`, `read:packages`, `repo`, `write:packages` scopes to push images to [GitHub Container Registry](https://docs.github.com/en/packages/guides/about-github-container-registry).
 - `SLACK_WEBHOOK_URL` repository secret with a Slack [webhook URL](https://api.slack.com/messaging/webhooks) for CI notifications.
 
 See [ci-image.yaml](.github/workflows/ci-image.yaml) workflow for additional details.

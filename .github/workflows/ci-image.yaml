@@ -10,7 +10,7 @@ env:
   ARGOCD_BASE_IMAGE_VERSION: v1.8.6
 
   IMAGE_NAME: argocd-helm-plugins
-  IMAGE_REGISTRY: docker.pkg.github.com
+  IMAGE_REGISTRY: ghcr.io
 jobs:
   build:
     name: Build, tag and push
@@ -54,7 +54,7 @@ jobs:
                      ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}/${IMAGE_NAME}:latest
 
       - name: Log into Docker registry
-        run: echo '${{ secrets.GITHUB_TOKEN }}' | docker login ${IMAGE_REGISTRY} -u ${{ github.actor }} --password-stdin
+        run: echo '${{ secrets.GHCR_PAT }}' | docker login ${IMAGE_REGISTRY} -u ${{ github.actor }} --password-stdin
 
       - name: Push Docker image
         run: |
