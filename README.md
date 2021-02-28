@@ -18,6 +18,6 @@ docker build \
 ## CI
 
 Requirements:
-- `SLACK_WEBHOOK_URL` repository secret with a Salck [webhook URL](https://api.slack.com/messaging/webhooks) for CI notifications.
+- `SLACK_WEBHOOK_URL` repository secret with a Slack [webhook URL](https://api.slack.com/messaging/webhooks) for CI notifications.
 
 See [ci-image.yaml](.github/workflows/ci-image.yaml) workflow for additional details.
