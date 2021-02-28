@@ -9,7 +9,6 @@ env:
   ARGOCD_BASE_IMAGE: argoproj/argocd
   ARGOCD_BASE_IMAGE_VERSION: v1.8.6
 
-  IMAGE_NAME: argocd-helm-plugins
   IMAGE_REGISTRY: ghcr.io
 jobs:
   build:
@@ -32,7 +31,7 @@ jobs:
           docker build \
                  --build-arg ARGOCD_BASE_IMAGE=${ARGOCD_BASE_IMAGE} \
                  --build-arg ARGOCD_BASE_IMAGE_VERSION=${ARGOCD_BASE_IMAGE_VERSION} \
-                 -t ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}/${IMAGE_NAME}:${{ github.sha }} .
+                 -t ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}:${{ github.sha }} .
 
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.34.0
@@ -48,18 +47,18 @@ jobs:
 
       - name: Tag Docker image
         run: |
-          docker tag ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}/${IMAGE_NAME}:${{ github.sha }} \
-                     ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}/${IMAGE_NAME}:${IMAGE_VERSION}
-          docker tag ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}/${IMAGE_NAME}:${{ github.sha }} \
-                     ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}/${IMAGE_NAME}:latest
+          docker tag ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}:${{ github.sha }} \
+                     ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}:${IMAGE_VERSION}
+          docker tag ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}:${{ github.sha }} \
+                     ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}:latest
 
       - name: Log into Docker registry
         run: echo '${{ secrets.GHCR_PAT }}' | docker login ${IMAGE_REGISTRY} -u ${{ github.actor }} --password-stdin
 
       - name: Push Docker image
         run: |
-          docker push ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}/${IMAGE_NAME}:${IMAGE_VERSION}
-          docker push ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}/${IMAGE_NAME}:latest
+          docker push ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}:${IMAGE_VERSION}
+          docker push ${IMAGE_REGISTRY}/${IMAGE_REPOSITORY}:latest
 
       - name: Notify slack
         uses: 8398a7/action-slack@v3
