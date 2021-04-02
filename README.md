@@ -11,7 +11,7 @@ Requirements:
 ```shell
 docker build \
   --build-arg ARGOCD_BASE_IMAGE="argoproj/argocd" \
-  --build-arg ARGOCD_BASE_IMAGE_VERSION="v1.8.6" \
+  --build-arg ARGOCD_BASE_IMAGE_VERSION="v1.8.7" \
   -t argocd-helm-plugins:0.1-non-ci .
 ```
 
