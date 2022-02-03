@@ -1,8 +1,8 @@
 # argocd-helm-plugins
 
 ArgoCD server custom image with additional Helm plugins:
-- [helm-git](https://github.com/aslafy-z/helm-git) version `0.10.0`
-- [helm-diff](https://github.com/databus23/helm-diff) version `v3.1.3`
+- [helm-git](https://github.com/aslafy-z/helm-git) version `0.11.1`
+- [helm-diff](https://github.com/databus23/helm-diff) version `v3.4.0`
 
 ## Local build
 
@@ -12,7 +12,7 @@ Requirements:
 ```shell
 docker build \
   --build-arg ARGOCD_BASE_IMAGE="argoproj/argocd" \
-  --build-arg ARGOCD_BASE_IMAGE_VERSION="v2.0.1" \
+  --build-arg ARGOCD_BASE_IMAGE_VERSION="v2.2.3" \
   -t argocd-helm-plugins:0.1-non-ci .
 ```
 
