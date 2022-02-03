@@ -20,9 +20,9 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN wget -qO /usr/local/bin/argo-cd-helmfile.sh ${CUSTOM_TOOL_HELMFILE_WRAPPER_REPO} && \
+RUN curl -o /usr/local/bin/argo-cd-helmfile.sh -L ${CUSTOM_TOOL_HELMFILE_WRAPPER_REPO} && \
     chmod +x /custom-tools/argo-cd-helmfile.sh && \
-    wget -qO /usr/local/bin/helmfile ${CUSTOM_TOOL_HELMFILE_REPO}/${CUSTOM_TOOL_HELMFILE_VERSION}/helmfile_linux_amd64 && \
+    curl -o /usr/local/bin/helmfile -L ${CUSTOM_TOOL_HELMFILE_REPO}/${CUSTOM_TOOL_HELMFILE_VERSION}/helmfile_linux_amd64 && \
     chmod +x /usr/local/bin/helmfile
 
 USER argocd
