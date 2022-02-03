@@ -12,8 +12,6 @@ ARG CUSTOM_TOOL_HELMFILE_VERSION="v0.143.0"
 ARG CUSTOM_TOOL_HELMFILE_REPO="https://github.com/roboll/helmfile/releases/download"
 ARG CUSTOM_TOOL_HELMFILE_WRAPPER_REPO="https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh"
 
-FROM ${ARGOCD_BASE_IMAGE}:${ARGOCD_BASE_IMAGE_VERSION}
-
 USER root
 
 RUN apt-get update && \
