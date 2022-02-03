@@ -4,6 +4,9 @@ ArgoCD server custom image with additional Helm plugins:
 - [helm-git](https://github.com/aslafy-z/helm-git) version `0.11.1`
 - [helm-diff](https://github.com/databus23/helm-diff) version `v3.4.0`
 
+and tools:
+- [helmfile](https://github.com/roboll/helmfile) version `0.143.0`
+
 ## Local build
 
 Requirements:
