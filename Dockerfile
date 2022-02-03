@@ -1,6 +1,8 @@
 ARG ARGOCD_BASE_IMAGE="quay.io/argoproj/argocd"
 ARG ARGOCD_BASE_IMAGE_VERSION="v2.2.3"
 
+FROM ${ARGOCD_BASE_IMAGE}:${ARGOCD_BASE_IMAGE_VERSION}
+
 ARG HELM_GIT_PLUGIN_VERSION="0.11.1"
 ARG HELM_DIFF_PLUGIN_VERSION="v3.4.0"
 ARG HELM_GIT_PLUGIN_REPO="https://github.com/aslafy-z/helm-git"
@@ -21,7 +23,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN curl -o /usr/local/bin/argo-cd-helmfile.sh -L ${CUSTOM_TOOL_HELMFILE_WRAPPER_REPO} && \
-    chmod +x /custom-tools/argo-cd-helmfile.sh && \
+    chmod +x /usr/local/bin/argo-cd-helmfile.sh && \
     curl -o /usr/local/bin/helmfile -L ${CUSTOM_TOOL_HELMFILE_REPO}/${CUSTOM_TOOL_HELMFILE_VERSION}/helmfile_linux_amd64 && \
     chmod +x /usr/local/bin/helmfile
 
